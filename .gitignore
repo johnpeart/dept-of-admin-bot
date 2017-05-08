@@ -4,3 +4,5 @@ node_modules
 pkg-config*
 pkgconfig*
 npm-debug.log
+assets/social.js
+app.html
