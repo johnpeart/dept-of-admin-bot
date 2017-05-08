@@ -1,0 +1,20 @@
+{
+  "name": "dept-of-admin-bot",
+  "version": "1.0.0",
+  "description": "A Twitter bot that tweets from the @DeptOfAdmin",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "Twitter",
+    "Bot"
+  ],
+  "author": "John Peart",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^1.6.5",
+    "twit": "^2.2.5"
+  }
+}
