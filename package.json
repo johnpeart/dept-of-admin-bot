@@ -1,6 +1,9 @@
 {
   "name": "dept-of-admin-bot",
   "version": "1.0.0",
+  "engines": {
+    "node": "6.9.1"
+  },
   "description": "A Twitter bot that tweets from the @DeptOfAdmin",
   "main": "server.js",
   "scripts": {
