@@ -238,8 +238,8 @@ function tweet() {
 	wrapText(context, text, twitterPadding, (twitterPadding * 4), twitterWidthPadding, twitterLineHeight);
 
 
-	if ( text.length > 140 ) {
-		var tweetText = text.substring(0,139) + "…";
+	if ( text.length > 280 ) {
+		var tweetText = text.substring(0,279) + "…";
 	} else {
 		var tweetText = text;
 	}
