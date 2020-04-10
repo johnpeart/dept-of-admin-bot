@@ -101,8 +101,8 @@ function tweet() {
 		var tweetText = text;
 	}
 
-	if ( text.length > 420 ) {
-		var altText = text.substring(0,419) + "…";
+	if ( text.length > 410 ) {
+		var altText = text.substring(0,410) + "…";
 	} else {
 		var altText = text;
 	}
