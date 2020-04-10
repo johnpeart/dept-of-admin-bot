@@ -56,7 +56,8 @@ function tweet() {
 	var twitterWidthPadding = (twitterWidth - (twitterPadding * 2));
 	var twitterHeight = 512;
 	var twitterHeightPadding = (twitterHeight - (twitterPadding * 2));
-	var twitterLineHeight = 35;
+	var twitterLineHeight = 40;
+	var twitterFontSize = 30;
 
 	var twitterBaseline = (twitterHeight * 0.5);
 
@@ -80,7 +81,7 @@ function tweet() {
 
 	// Add text
 	ctx.textBaseline="top";
-	ctx.font = (twitterLineHeight - 5) + "px 'Bitter'";
+	ctx.font = twitterFontSize + "px 'Bitter'";
 	ctx.fillStyle = "#ffffff"
 
 	wrapText(ctx, text, twitterPadding, (twitterPadding * 4), twitterWidthPadding, twitterLineHeight);
@@ -97,7 +98,7 @@ function tweet() {
 	// Draw the logo at the top of the image
 
 	img = new Image()
-	img.src = fs.readFileSync(path.join(__dirname, 'assets', 'logo.png'))
+	img.src = fs.readFileSync(path.join(__dirname, '/assets/', 'logo.png'))
 	ctx.drawImage(img, twitterPadding, (twitterPadding * 0.8), img.width / 3, img.height / 3)
 
 	T.post('media/upload', { media_data: deptcanvas.toBuffer().toString('base64') }, function (err, data, response) {
