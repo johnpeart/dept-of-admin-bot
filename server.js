@@ -80,7 +80,7 @@ function tweet() {
 
 	// Add text
 	ctx.textBaseline="top";
-	ctx.font = (twitterLineHeight - 7) + "px 'Bitter'";
+	ctx.font = (twitterLineHeight - 5) + "px 'Bitter'";
 	ctx.fillStyle = "#ffffff"
 
 	wrapText(ctx, text, twitterPadding, (twitterPadding * 4), twitterWidthPadding, twitterLineHeight);
