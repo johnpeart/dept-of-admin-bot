@@ -4,7 +4,7 @@ var 	Twit = require('twit'),
 
 const 	{ registerFont, createCanvas, Canvas, Image } = require('canvas')
 
-config = require(path.join(__dirname, 'config.js'));
+config = require(path.join(__dirname, 'config-local.js'));
 quotes = require(path.join(__dirname, 'quotes.js'));
 colors = require(path.join(__dirname, 'colors.js'));
 
@@ -51,13 +51,13 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
 
 function tweet() {
 
-	var twitterPadding = 45;
+	var twitterPadding = 40;
 	var twitterWidth = 1200;
 	var twitterWidthPadding = (twitterWidth - (twitterPadding * 2));
 	var twitterHeight = 675;
 	var twitterHeightPadding = (twitterHeight - (twitterPadding * 2));
-	var twitterLineHeight = 50;
-	var twitterFontSize = 40;
+	var twitterLineHeight = 45;
+	var twitterFontSize = 35;
 
 	var twitterBaseline = (twitterHeight * 0.5);
 
@@ -84,7 +84,7 @@ function tweet() {
 	ctx.drawImage(img, twitterPadding, (twitterPadding * 0.8), img.width / 2, img.height / 2)
 
 	ctx.fillStyle = highlightColor;
-	ctx.fillRect(0, ((twitterPadding * 2) + (img.height / 2)), twitterWidth, (twitterHeight - ((twitterPadding * 2) + (img.height / 2))));
+	ctx.fillRect(0, ((twitterPadding * 1.6) + (img.height / 2)), twitterWidth, (twitterHeight - ((twitterPadding * 1.6) + (img.height / 2))));
 
 	// Add text
 	ctx.textBaseline="top";
