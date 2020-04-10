@@ -104,7 +104,7 @@ function tweet() {
 	if ( text.length > 420 ) {
 		var altText = text.substring(0,419) + "…";
 	} else {
-		var tweetText = text;
+		var altText = text;
 	}
 
 
