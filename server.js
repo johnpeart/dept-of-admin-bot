@@ -72,12 +72,19 @@ function tweet() {
 
 	var text = chooseQuote;
 
-	// Fill with gradient
+	// Background fill with white
+
 	ctx.fillStyle = "#FFFFFF";
 	ctx.fillRect(0, 0, twitterWidth, twitterHeight);
 
+	// Draw the logo at the top of the image
+
+	img = new Image()
+	img.src = fs.readFileSync(path.join(__dirname, '/assets/', 'logo.png'))
+	ctx.drawImage(img, twitterPadding, (twitterPadding * 0.8), img.width / 2, img.height / 2)
+
 	ctx.fillStyle = highlightColor;
-	ctx.fillRect(0, (twitterPadding * 3), twitterWidth, twitterHeight);
+	ctx.fillRect(0, ((twitterPadding * 2) + (img.height / 2)), twitterWidth, (twitterHeight - ((twitterPadding * 2) + (img.height / 2))));
 
 	// Add text
 	ctx.textBaseline="top";
@@ -95,11 +102,6 @@ function tweet() {
 	}
 
 
-	// Draw the logo at the top of the image
-
-	img = new Image()
-	img.src = fs.readFileSync(path.join(__dirname, '/assets/', 'logo.png'))
-	ctx.drawImage(img, twitterPadding, (twitterPadding * 0.8), img.width / 3, img.height / 3)
 
 	T.post('media/upload', { media_data: deptcanvas.toBuffer().toString('base64') }, function (err, data, response) {
 
