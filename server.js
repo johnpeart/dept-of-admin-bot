@@ -101,6 +101,12 @@ function tweet() {
 		var tweetText = text;
 	}
 
+	if ( text.length > 420 ) {
+		var altText = text.substring(0,419) + "…";
+	} else {
+		var tweetText = text;
+	}
+
 
 
 	T.post('media/upload', { media_data: deptcanvas.toBuffer().toString('base64') }, function (err, data, response) {
@@ -109,6 +115,7 @@ function tweet() {
 		var mediaIdStr = data.media_id_string
 		var params = {
 			status: tweetText,
+			altText: { text: altText },
 			media_ids: [mediaIdStr]
 		}
 
