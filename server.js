@@ -91,7 +91,7 @@ function tweet() {
 	ctx.font = twitterFontSize + "px 'Bitter'";
 	ctx.fillStyle = "#ffffff"
 
-	wrapText(ctx, text, twitterPadding, (twitterPadding * 4), twitterWidthPadding, twitterLineHeight);
+	wrapText(ctx, text, twitterPadding, ((twitterPadding * 1.6) + (img.height / 2) + twitterPadding), twitterWidthPadding, twitterLineHeight);
 
 
 	// take the text shown on the image, and also insert it in the body of the tweet.
