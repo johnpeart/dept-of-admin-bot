@@ -51,13 +51,13 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
 
 function tweet() {
 
-	var twitterPadding = 35;
+	var twitterPadding = 45;
 	var twitterWidth = 1200;
 	var twitterWidthPadding = (twitterWidth - (twitterPadding * 2));
 	var twitterHeight = 675;
 	var twitterHeightPadding = (twitterHeight - (twitterPadding * 2));
-	var twitterLineHeight = 40;
-	var twitterFontSize = 30;
+	var twitterLineHeight = 50;
+	var twitterFontSize = 40;
 
 	var twitterBaseline = (twitterHeight * 0.5);
 
