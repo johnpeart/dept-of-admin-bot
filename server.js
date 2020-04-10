@@ -115,7 +115,7 @@ function tweet() {
 		var mediaIdStr = data.media_id_string
 		var params = {
 			status: tweetText,
-			altText: { text: altText },
+			alt_text: { text: altText },
 			media_ids: [mediaIdStr]
 		}
 
