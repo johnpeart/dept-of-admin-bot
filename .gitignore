@@ -6,3 +6,4 @@ pkgconfig*
 npm-debug.log
 assets/social.js
 app.html
+config-local.js
