@@ -1,6 +1,10 @@
 {
   "name": "dept-of-admin-bot",
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnpeart/dept-of-admin-bot.git"
+  },
   "engines": {
     "node": "6.9.1",
     "npm": "3.10.8"
@@ -8,7 +12,6 @@
   "description": "A Twitter bot that tweets from the @DeptOfAdmin",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "keywords": [
@@ -18,11 +21,11 @@
   "author": "John Peart",
   "license": "ISC",
   "dependencies": {
-    "canvas": "1.6.11",
-    "express": "4.16.3",
+    "canvas": "2.6.1",
+    "express": "4.17.1",
     "fs": "0.0.1-security",
     "grunt-cli": "^1.2.0",
     "path": "0.12.7",
-    "twit": "2.2.10"
+    "twit": "2.2.11"
   }
 }
