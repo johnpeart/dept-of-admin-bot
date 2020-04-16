@@ -1,33 +1,30 @@
+// Import frameworks from package.json
 var 	Twit = require('twit'),
 		fs = require('fs'),
 		path = require('path')
 
-const 	{ registerFont, createCanvas, Canvas, Image } = require('canvas')
+const 	{ 
+	registerFont, 
+	createCanvas, 
+	Canvas, 
+	Image 
+} = require('canvas')
 
-config = require(path.join(__dirname, 'config.js'));
+// Import modules
+config = require(path.join(__dirname, 'config-local.js'));
 quotes = require(path.join(__dirname, 'quotes.js'));
 colors = require(path.join(__dirname, 'colors.js'));
 
-function fontFile (name) {
+// A function to import font files from the /assets/fonts/ folder
+function fontFile(name) {
 	return path.join(__dirname, '/assets/fonts/', name)
 }
 
-// Pass each font, including all of its individual variants if there are any, to
-// `registerFont`. When you set `ctx.font`, refer to the styles and the family
-// name as it is embedded in the TTF. If you aren't sure, open the font in
-// FontForge and visit Element -> Font Information and copy the Family Name
+// Register the fonts
 registerFont(fontFile('Bitter-Regular.ttf'), { family: 'Bitter' })
 
-var T = new Twit(config);
-
-//Generate the canvas
-const deptcanvas = createCanvas(1024, 512)
-deptcanvas instanceof Canvas
-
-var chooseQuote 	= quotes[Math.floor(Math.random()*quotes.length)];
-var highlightColor	= colors[Math.floor(Math.random()*colors.length)];
-
-
+// A function to split longer quotes over multiple lines, 
+// for use as part of the canvas
 function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
 	var words = text.split(' ');
 	var line = '';
@@ -49,40 +46,54 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
 
 }
 
-function tweet() {
+// TWITTER AUTH
+// Create a variable that holds the Twitter API credentials
+var T = new Twit(config);
 
-	var twitterPadding = 40;
-	var twitterWidth = 1200;
-	var twitterWidthPadding = (twitterWidth - (twitterPadding * 2));
-	var twitterHeight = 675;
-	var twitterHeightPadding = (twitterHeight - (twitterPadding * 2));
-	var twitterLineHeight = 45;
-	var twitterFontSize = 35;
 
-	var twitterBaseline = (twitterHeight * 0.5);
+// CANVAS VARIABLES
+// Pick a quote at random
+var chooseQuote 	= quotes[Math.floor(Math.random()*quotes.length)];
+// Pick a background colour
+var highlightColor	= colors[Math.floor(Math.random()*colors.length)];
+// Set sizes of the canvas and its design elements
+var twitterPadding = 40;
+var twitterWidth = 1200;
+var twitterWidthPadding = (twitterWidth - (twitterPadding * 2));
+var twitterHeight = 675;
+var twitterHeightPadding = (twitterHeight - (twitterPadding * 2));
+var twitterLineHeight = 45;
+var twitterFontSize = 35;
+var twitterBaseline = (twitterHeight * 0.5);
+var x = twitterPadding;
+var y = twitterPadding;
 
-	deptcanvas.width = (twitterWidth * 2);
-	deptcanvas.height = (twitterHeight * 2);
+// Generate a blank canvas canvas
+const 	deptcanvas = createCanvas(twitterWidth, twitterHeight)
+		deptcanvas instanceof Canvas
 
-	var x = twitterPadding;
-	var y = twitterPadding;
+// A function to generate the Twitter image via the HTML Canvas API
+function createTwitterImage() {
 
+	// Set the width and height of the canvas
+	deptcanvas.width = (twitterWidth);
+	deptcanvas.height = (twitterHeight);
+
+	// This tells the API that the canvas is 2 dimensional
 	var ctx = deptcanvas.getContext('2d');
-	ctx.scale(2,2);
 
-	var text = chooseQuote;
-
-	// Background fill with white
-
+	// Creat a full size background fill in white
 	ctx.fillStyle = "#FFFFFF";
 	ctx.fillRect(0, 0, twitterWidth, twitterHeight);
 
-	// Draw the logo at the top of the image
-
+	// Import the external image of the logo
+	// Position the logo at the top left of the canvas
 	img = new Image()
 	img.src = fs.readFileSync(path.join(__dirname, '/assets/', 'logo.png'))
 	ctx.drawImage(img, twitterPadding, (twitterPadding * 0.8), img.width / 2, img.height / 2)
 
+	// Create a rectangle and fill it with a the random colour chosen earlier
+	// Make the rectangle full width and draw it from underneath the logo to the bottom of the image
 	ctx.fillStyle = highlightColor;
 	ctx.fillRect(0, ((twitterPadding * 1.6) + (img.height / 2)), twitterWidth, (twitterHeight - ((twitterPadding * 1.6) + (img.height / 2))));
 
@@ -91,17 +102,24 @@ function tweet() {
 	ctx.font = twitterFontSize + "px 'Bitter'";
 	ctx.fillStyle = "#ffffff"
 
-	wrapText(ctx, text, twitterPadding, ((twitterPadding * 1.6) + (img.height / 2) + twitterPadding), twitterWidthPadding, twitterLineHeight);
+	// If the random quote would be wider than the canvas width, break it over multiple lines
+	wrapText(ctx, chooseQuote, twitterPadding, ((twitterPadding * 1.6) + (img.height / 2) + twitterPadding), twitterWidthPadding, twitterLineHeight);
 
+}
 
-	// take the text shown on the image, and also insert it in the body of the tweet.
-	if ( text.length > 270 ) {
-		var tweetText = text.substring(0,270) + "…";
+function sendTweet() {
+
+	// call the function to draw the canvas
+	createTwitterImage();
+
+	// Check the character length of the quote, trim it if necessary and insert it in the body of the tweet.
+	if ( chooseQuote.length > 270 ) {
+		var tweetText = chooseQuote.substring(0,270) + "…";
 	} else {
-		var tweetText = text;
+		var tweetText = chooseQuote;
 	}
 
-
+	// Post the tweet
 	T.post('media/upload', { media_data: deptcanvas.toBuffer().toString('base64') }, function (err, data, response) {
 
 		// Sets up references to the image and text
@@ -120,4 +138,4 @@ function tweet() {
 
 }
 
-tweet();
+sendTweet();
