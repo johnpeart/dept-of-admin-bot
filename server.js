@@ -11,7 +11,7 @@ const 	{
 } = require('canvas')
 
 // Import modules
-config = require(path.join(__dirname, 'config-local.js'));
+config = require(path.join(__dirname, 'config.js'));
 quotes = require(path.join(__dirname, 'quotes.js'));
 colors = require(path.join(__dirname, 'colors.js'));
 
