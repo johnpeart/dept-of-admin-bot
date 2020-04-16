@@ -7,7 +7,7 @@
   },
   "engines": {
     "node": "6.9.1",
-    "npm": "3.10.8"
+    "npm": "6.14.4"
   },
   "description": "A Twitter bot that tweets from the @DeptOfAdmin",
   "main": "server.js",
