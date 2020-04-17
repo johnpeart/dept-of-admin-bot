@@ -60,8 +60,8 @@ var canvasHeight = 675;
 var canvasPadding = 40;
 
 // Set the size of the full canvas, minus padding on each side
-var canvasWidthPadding = (canvasWidth - (canvasWidth * 2));
-var canvasHeightPadding = (canvasHeight - (canvasHeight * 2));
+var canvasWidthPadding = (canvasWidth - (canvasPadding * 2));
+var canvasHeightPadding = (canvasHeight - (canvasPadding * 2));
 
 // Set text sizes and line heights
 var canvasFontSize = 35;
