@@ -13,7 +13,6 @@ const 	{
 // Import modules
 config = require(path.join(__dirname, 'config.js'));
 quotes = require(path.join(__dirname, 'quotes.js'));
-colors = require(path.join(__dirname, 'colors.js'));
 
 // A function to import font files from the /assets/fonts/ folder
 function fontFile(name) {
@@ -49,8 +48,6 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
 // CANVAS VARIABLES
 // Pick a quote at random
 var chooseQuote 	= quotes[Math.floor(Math.random()*quotes.length)];
-// Pick a background colour
-var chooseColor	= colors[Math.floor(Math.random()*colors.length)];
 
 // Set sizes of the canvas
 var canvasWidth = 1200;
@@ -82,18 +79,18 @@ function createTwitterImage() {
 	var ctx = deptcanvas.getContext('2d');
 
 	// Creat a full size background fill in white
-	ctx.fillStyle = "#FFFFFF";
+	ctx.fillStyle = "#FFD700";
 	ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
 	// Import the external image of the logo
 	// Position the logo at the top left of the canvas
 	img = new Image()
-	img.src = fs.readFileSync(path.join(__dirname, '/assets/', 'logo.png'))
+	img.src = fs.readFileSync(path.join(__dirname, '/assets/', 'banner.png'))
 	ctx.drawImage(img, canvasPadding, (canvasPadding * 0.8), img.width / 2, img.height / 2)
 
 	// Create a rectangle and fill it with a the random colour chosen earlier
 	// Make the rectangle full width and draw it from underneath the logo to the bottom of the image
-	ctx.fillStyle = chooseColor;
+	ctx.fillStyle = "#000000";
 	ctx.fillRect(0, ((canvasPadding * 1.6) + (img.height / 2)), canvasWidth, (canvasHeight - ((canvasPadding * 1.6) + (img.height / 2))));
 
 	// Add text
