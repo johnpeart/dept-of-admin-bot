@@ -77,6 +77,7 @@ function createTwitterImage() {
 
 	// This tells the API that the canvas is 2 dimensional
 	var ctx = deptcanvas.getContext('2d');
+	ctx.scale(2,2);
 
 	// Creat a full size background fill in white
 	ctx.fillStyle = "#FFD700";
