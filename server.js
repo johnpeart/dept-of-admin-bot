@@ -77,7 +77,6 @@ function createTwitterImage() {
 
 	// This tells the API that the canvas is 2 dimensional
 	var ctx = deptcanvas.getContext('2d');
-	ctx.scale(2,2);
 
 	// Creat a full size background fill in white
 	ctx.fillStyle = "#FFD700";
@@ -91,7 +90,7 @@ function createTwitterImage() {
 
 	// Create a rectangle and fill it with a the random colour chosen earlier
 	// Make the rectangle full width and draw it from underneath the logo to the bottom of the image
-	ctx.fillStyle = "#1d1d1d";
+	ctx.fillStyle = "#000000";
 	ctx.fillRect(0, ((canvasPadding * 1.6) + (img.height / 2)), canvasWidth, (canvasHeight - ((canvasPadding * 1.6) + (img.height / 2))));
 
 	// Add text
